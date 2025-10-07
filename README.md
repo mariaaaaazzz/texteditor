@@ -1,16 +1,16 @@
 # CSC 207: Text Editor
 
-**Author**: _(TODO: fill me in)_
+**Author**: Jiayi Zhang
 
 ## Resources Used
 
-+ _(TODO: fill me in)_
-+ ...
-+ ...
++ Text editor: VS Code 1.101.2
++ Java version: "17.0.16"
++ I referred to "docs.oracle.com/javase/8/docs/api/javax/swing/KeyStroke.html"
++ for unfamiliar methods including KeyStroke and Files.writeString.
 
 ## Changelog
 
-_(TODO: fill me in with a log of your committed changes)_
 
 
 Insert:

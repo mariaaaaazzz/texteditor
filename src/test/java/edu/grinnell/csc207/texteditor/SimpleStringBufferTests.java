@@ -10,7 +10,6 @@ import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
 
 public class SimpleStringBufferTests {
-    /** TODO: fill me in with unit and property tests! */
 
     @Test
     public void InitialState() {
@@ -48,7 +47,8 @@ public class SimpleStringBufferTests {
     boolean insertingCharactersShouldPreserveOrder(@ForAll String input) {
         SimpleStringBuffer buf = new SimpleStringBuffer(0, Math.max(10, input.length() + 1));
 
-        for (char c : input.toCharArray()) {
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
             buf.insert(c);
         }
         assertEquals(input.length(), buf.getSize());

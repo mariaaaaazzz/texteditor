@@ -47,7 +47,8 @@ public class GapBufferTests {
     void insertingStringShouldReproduceOriginal(@ForAll String text) {
         GapBuffer buf = new GapBuffer();
 
-        for (char c : text.toCharArray()) {
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
             buf.insert(c);
         }
 
