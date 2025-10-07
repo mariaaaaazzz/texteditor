@@ -27,10 +27,10 @@ Insert:
 4. The time complexity is O(n)/linear.
 
 
-Our runtime model accounts for the two main operations that insert performs: checking and (possibly) 
-expanding the buffer, and shifting characters to make room for the new one. Expanding the 
-buffer happens only occasionally and takes O(n) time, but because it doesn't occurs all the time, 
-its amortized cost per insert is O(1). The dominant cost comes from shifting the existing 
+Our runtime model accounts for the two main operations that insert performs: checking and 
+(possibly) expanding the buffer, and shifting characters to make room for the new one. Expanding
+the buffer happens only occasionally and takes O(n) time, but because it doesn't occurs all the 
+time, its amortized cost per insert is O(1). The dominant cost comes from shifting the existing 
 characters to the right, which requires n−k operations where k is the cursor position. 
 This leads to a worst-case runtime of O(n). Using a mutable char[] allows these operations 
 to be done in place; if we instead used immutable String, each insertion would require 
