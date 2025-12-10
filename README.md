@@ -11,7 +11,7 @@
 
 ## Changelog
  
-Revision: I added spaces between ")" and "]" for every if statement or loops in both the SimpleStringBuffer file and the gapBuffer file. 
+Revision: I added spaces between ")" and "]" for every if statement or loops in both the SimpleStringBuffer file and the gapBuffer file. I also added a public SimpleStringBuffer() constructor to fix the compilation error.
 
 
 
