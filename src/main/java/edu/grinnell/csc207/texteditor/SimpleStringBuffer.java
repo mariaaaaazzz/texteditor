@@ -62,14 +62,16 @@ public class SimpleStringBuffer {
      * If the cursor is at position 0, nothing happens.
      */
     public void delete() {
-        ensureCapacity();
-        int i = cursor;
-
-        while (i < size) {
-            data[i + 1] = data[i];
+        if (cursor == 0) {
+            return;
+        }
+        
+        int i = cursor - 1;
+        while (i < size - 1) {
+            data[i] = data[i + 1];
             i++;
         }
-
+        
         size--;
         cursor--;
     }
