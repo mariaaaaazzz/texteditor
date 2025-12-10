@@ -43,6 +43,7 @@ public class GapBuffer {
             return;
         }
         cursor--;
+        gapEnd++;
     }
 
     /**
