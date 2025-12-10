@@ -8,7 +8,9 @@ import java.util.Arrays;
  */
 public class SimpleStringBuffer {
     private int cursor;
+
     private int size; // size of string data
+
     private char[] data;
 
     /**
@@ -35,7 +37,7 @@ public class SimpleStringBuffer {
         int i = cursor;
 
         while (i < size) {
-            data[i+1] = data[i];
+            data[i + 1] = data[i];
             i++;
         }
 

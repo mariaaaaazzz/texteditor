@@ -19,7 +19,13 @@ import com.googlecode.lanterna.input.KeyStroke;
  */
 public class TextEditor {
 
-    public static void drawBuffer(GapBuffer buf, Screen screen) throws IOException{
+    /**
+     * Draws the contents of the buffer to the screen.
+     * @param buf the gap buffer to draw.
+     * @param screen the screen to draw on.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static void drawBuffer(GapBuffer buf, Screen screen) throws IOException {
         screen.refresh();
         for (int i = 0; i < buf.getSize(); i++) {
             char ch = buf.getChar(i);
@@ -33,7 +39,7 @@ public class TextEditor {
      * The main entry point for the TextEditor application.
      * @param args command-line arguments.
      */
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             System.err.println("Usage: java TextEditor <filename>");
             System.exit(1);
@@ -55,10 +61,8 @@ public class TextEditor {
         screen.startScreen();
 
         drawBuffer(buf, screen);
-        
 
-     
-        while(true){
+        while (true) {
             KeyStroke key = screen.readInput();  
             if (key.getKeyType() == KeyType.Escape) {
                 break;

@@ -10,6 +10,8 @@
 + for unfamiliar methods including KeyStroke and Files.writeString.
 
 ## Changelog
+ 
+Revision: I added spaces between ")" and "]" for every if statement or loops in both the SimpleStringBuffer file and the gapBuffer file. 
 
 
 
