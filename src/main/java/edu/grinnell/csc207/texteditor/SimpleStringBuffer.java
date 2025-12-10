@@ -43,11 +43,9 @@ public class SimpleStringBuffer {
      */
     public void insert(char ch) {
         ensureCapacity();
-        int i = cursor;
-
-        while (i < size) {
+        
+        for (int i = size - 1; i >= cursor; i--) {
             data[i + 1] = data[i];
-            i++;
         }
 
         data[cursor] = ch;
