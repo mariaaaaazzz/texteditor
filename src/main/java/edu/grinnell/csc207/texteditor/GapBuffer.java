@@ -100,7 +100,7 @@ public class GapBuffer {
         if (i < cursor) {
             return data[i];
         } else {
-            return data[i + cursor - gapEnd];
+            return data[i + (gapEnd - cursor)];
         }
   
     }
