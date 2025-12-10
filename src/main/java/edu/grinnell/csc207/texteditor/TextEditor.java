@@ -1,17 +1,17 @@
-package edu.grinnell.csc207.texteditor;
 
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+package edu.grinnell.csc207.texteditor;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 
 
 /**
@@ -89,5 +89,3 @@ public class TextEditor {
 
 
 }
-
-
