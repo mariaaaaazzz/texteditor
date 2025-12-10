@@ -36,7 +36,7 @@ public class GapBuffer {
      * The cursor then moves one position to the left.
      */
     public void delete() {
-        if (cursor == 0){
+        if (cursor == 0) {
             return;
         }
         cursor--;
@@ -55,8 +55,8 @@ public class GapBuffer {
      * Moves the cursor one position to the left.
      */
     public void moveLeft() {
-        if (cursor > 0){
-            data[cursor-1]=data[gapEnd-1];
+        if (cursor > 0) {
+            data[cursor - 1] = data[gapEnd - 1];
             cursor--;
             gapEnd--;
         }
@@ -66,8 +66,8 @@ public class GapBuffer {
      * Moves the cursor one position to the right.
      */
     public void moveRight() {
-        if (cursor < data.length){
-            data[cursor]=data[gapEnd];
+        if (cursor < data.length) {
+            data[cursor] = data[gapEnd];
             cursor++;
             gapEnd++;
         }
@@ -91,13 +91,13 @@ public class GapBuffer {
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public char getChar(int i) {
-        if (i<0 || i > getSize()){
+        if (i < 0 || i > getSize()) {
             throw new IndexOutOfBoundsException();
         }
-        if (i<cursor){
+        if (i < cursor) {
             return data[i];
-        }else {
-            return data[i+cursor-gapEnd];
+        } else {
+            return data[i + cursor - gapEnd];
         }
   
     }
@@ -110,12 +110,15 @@ public class GapBuffer {
      */
     public String toString() {
         String result = "";
+
         for (int i = 0; i < cursor; i++) {
             result += data[i];
         }
+
         for (int i = gapEnd; i < data.length; i++) {
             result += data[i];
         }
+
         return result;
     }
 
@@ -127,10 +130,12 @@ public class GapBuffer {
      */
     private void ensureGap(int gapNeed){
        int gapSize = gapEnd - cursor;
-       if (gapSize >= gapNeed){
+
+       if (gapSize >= gapNeed) {
         return;
     }
     int oldLength = data.length;
+    
     char[] newData = Arrays.copyOf(data, oldLength * 2);
 
     // Move right block to the end of the new array

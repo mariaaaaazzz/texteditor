@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class SimpleStringBuffer {
     private int cursor;
-    private int size; //size of string data
+    private int size; // size of string data
     private char[] data;
 
     /**
@@ -17,7 +17,7 @@ public class SimpleStringBuffer {
      * @param cursor the initial cursor position (usually 0)
      * @param size   the initial capacity of the buffer
      */
-    SimpleStringBuffer(int cursor, int size){
+    SimpleStringBuffer(int cursor, int size) {
         this.cursor = 0;
         this.size = 0;
         data = new char[size];
@@ -33,11 +33,13 @@ public class SimpleStringBuffer {
     public void insert(char ch) {
         ensureCapacity();
         int i = cursor;
-        while(i<size){
+
+        while (i < size) {
             data[i+1] = data[i];
             i++;
         }
-        data[cursor]=ch;
+
+        data[cursor] = ch;
         size++;
         cursor++;
     }
@@ -51,10 +53,12 @@ public class SimpleStringBuffer {
     public void delete() {
         ensureCapacity();
         int i = cursor;
-        while (i<size){
-            data[i+1]=data[i];
+
+        while (i < size) {
+            data[i + 1] = data[i];
             i++;
         }
+
         size--;
         cursor--;
     }
@@ -75,7 +79,8 @@ public class SimpleStringBuffer {
      */
     public void moveLeft() {
         ensureCapacity();
-        if (cursor != 0){
+
+        if (cursor != 0) {
             cursor--;
         }
     }
@@ -86,7 +91,8 @@ public class SimpleStringBuffer {
      */
     public void moveRight() {
         ensureCapacity();
-        if (cursor != size){
+
+        if (cursor != size) {
             cursor++;
         }
     }
@@ -111,7 +117,7 @@ public class SimpleStringBuffer {
      */
     public char getChar(int i) {
         ensureCapacity();
-        if (i<0 || i>=size){
+        if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException();
         }
         return data[i];
@@ -121,8 +127,8 @@ public class SimpleStringBuffer {
      * Ensures that the buffer has enough capacity to hold new characters.
      * If the buffer is full, its size is doubled.
      */
-    private void ensureCapacity(){
-        if(size==data.length){
+    private void ensureCapacity() {
+        if (size == data.length) {
             data = Arrays.copyOf(data, data.length * 2);
         }
     }
@@ -136,7 +142,8 @@ public class SimpleStringBuffer {
         ensureCapacity();
         int i = 0;
         String output = "";
-        while(i<size){
+
+        while (i < size) {
             output = output + data[i];
             i++;
         }
