@@ -1,3 +1,4 @@
+
 package edu.grinnell.csc207.texteditor;
 
 import java.util.Arrays;
@@ -12,15 +13,6 @@ public class SimpleStringBuffer {
     private int size; // size of string data
 
     private char[] data;
-
-    /**
-     * Creates an empty text buffer with a default capacity of 16 characters.
-     */
-    public SimpleStringBuffer() {
-        this.cursor = 0;
-        this.size = 0;
-        data = new char[16];
-    }
 
     /**
      * Creates a new text buffer with the given initial capacity.
