@@ -14,6 +14,15 @@ public class SimpleStringBuffer {
     private char[] data;
 
     /**
+     * Creates an empty text buffer with a default capacity of 16 characters.
+     */
+    public SimpleStringBuffer() {
+        this.cursor = 0;
+        this.size = 0;
+        data = new char[16];
+    }
+
+    /**
      * Creates a new text buffer with the given initial capacity.
      *
      * @param cursor the initial cursor position (usually 0)
