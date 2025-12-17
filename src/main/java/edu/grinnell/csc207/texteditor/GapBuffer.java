@@ -43,7 +43,6 @@ public class GapBuffer {
             return;
         }
         cursor--;
-        gapEnd++;
     }
 
     /**
@@ -101,7 +100,7 @@ public class GapBuffer {
         if (i < cursor) {
             return data[i];
         } else {
-            return data[i + cursor - gapEnd];
+            return data[i - cursor + gapEnd];
         }
   
     }
@@ -113,17 +112,17 @@ public class GapBuffer {
      * @return the buffer's contents as a string
      */
     public String toString() {
-        String result = "";
+        StringBuilder sb = new StringBuilder(getSize());
 
         for (int i = 0; i < cursor; i++) {
-            result += data[i];
+            sb.append(data[i]);
         }
 
         for (int i = gapEnd; i < data.length; i++) {
-            result += data[i];
+            sb.append(data[i]);
         }
-
-        return result;
+        
+        return sb.toString();
     }
 
     /**
