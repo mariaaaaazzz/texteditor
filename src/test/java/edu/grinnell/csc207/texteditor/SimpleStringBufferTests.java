@@ -1,4 +1,3 @@
-
 package edu.grinnell.csc207.texteditor;
 
 
@@ -12,7 +11,7 @@ public class SimpleStringBufferTests {
 
     @Test
     public void InitialState() {
-        SimpleStringBuffer myBuffer = new SimpleStringBuffer(0, 10);
+        SimpleStringBuffer myBuffer = new SimpleStringBuffer();
         assertEquals(0, myBuffer.getSize());          // size = logical length
         assertEquals(0, myBuffer.getCursorPosition());
         assertEquals("", myBuffer.toString());
@@ -22,7 +21,7 @@ public class SimpleStringBufferTests {
 
     @Test
     public void insertIncreasesSizeAndMovesCursor() {
-        SimpleStringBuffer myBuffer = new SimpleStringBuffer(0, 10);
+        SimpleStringBuffer myBuffer = new SimpleStringBuffer();
         myBuffer.insert('A');
         assertEquals(1, myBuffer.getSize());
         assertEquals(1, myBuffer.getCursorPosition());
@@ -32,7 +31,7 @@ public class SimpleStringBufferTests {
 
     @Test
     public void deleteRemovesCharacter() {
-        SimpleStringBuffer myBuffer = new SimpleStringBuffer(0, 10);
+        SimpleStringBuffer myBuffer = new SimpleStringBuffer();
         myBuffer.insert('A');
         myBuffer.insert('B');
         myBuffer.delete(); // backspace removes 'B'
@@ -44,12 +43,12 @@ public class SimpleStringBufferTests {
 
     @Property
     boolean insertingCharactersShouldPreserveOrder(@ForAll String input) {
-        SimpleStringBuffer buf = new SimpleStringBuffer(0, Math.max(10, input.length() + 1));
+        SimpleStringBuffer buf = new SimpleStringBuffer();
 
         for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            buf.insert(c);
+            buf.insert(input.charAt(i));
         }
+
         assertEquals(input.length(), buf.getSize());
         assertEquals(input, buf.toString());
         assertEquals(input.length(), buf.getCursorPosition());

@@ -1,7 +1,5 @@
 package edu.grinnell.csc207.texteditor;
 
-import java.util.Arrays;
-
 
 /**
  * A naive implementation of a text buffer using a <code>String</code>.
@@ -11,16 +9,18 @@ public class SimpleStringBuffer {
 
     private int size; // size of string data
 
-    private char[] data;
+    private String data;
 
     /**
      * Creates a new text buffer with the given initial capacity.
      *
      * @param cursor the initial cursor position (usually 0)
-     * @param size   the initial capacity of the buffer
+     * @param size the initial capacity of the buffer
      */
-    SimpleStringBuffer(int cursor, int size) {
-        data = new char[size];
+    public SimpleStringBuffer() {
+        data = "";
+        cursor = 0;
+        size = 0;
     }
 
     /**
@@ -31,17 +31,9 @@ public class SimpleStringBuffer {
      * @param ch the character to insert
      */
     public void insert(char ch) {
-        ensureCapacity();
-        int i = cursor;
-
-        while (i < size) {
-            data[i + 1] = data[i];
-            i++;
-        }
-
-        data[cursor] = ch;
-        size++;
+        data = data.substring(0, cursor) + ch + data.substring(cursor);
         cursor++;
+        size++;
     }
 
     /**
@@ -51,16 +43,13 @@ public class SimpleStringBuffer {
      * If the cursor is at position 0, nothing happens.
      */
     public void delete() {
-        ensureCapacity();
-        int i = cursor;
-
-        while (i < size) {
-            data[i + 1] = data[i];
-            i++;
+        if (cursor == 0) {
+            return;
         }
-
-        size--;
+        // remove char at index cursor-1
+        data = data.substring(0, cursor - 1) + data.substring(cursor);
         cursor--;
+        size--;
     }
 
     /**
@@ -69,7 +58,6 @@ public class SimpleStringBuffer {
      * @return the index where the next character will be inserted
      */
     public int getCursorPosition() {
-        ensureCapacity();
         return cursor;
     }
 
@@ -78,8 +66,6 @@ public class SimpleStringBuffer {
      * If the cursor is already at the beginning, it does nothing.
      */
     public void moveLeft() {
-        ensureCapacity();
-
         if (cursor != 0) {
             cursor--;
         }
@@ -90,8 +76,6 @@ public class SimpleStringBuffer {
      * If the cursor is already at the end of the buffer, it does nothing.
      */
     public void moveRight() {
-        ensureCapacity();
-
         if (cursor != size) {
             cursor++;
         }
@@ -104,7 +88,6 @@ public class SimpleStringBuffer {
      * @return the size of the buffer
      */
     public int getSize() {
-        ensureCapacity();
         return size;
     }
 
@@ -116,22 +99,13 @@ public class SimpleStringBuffer {
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public char getChar(int i) {
-        ensureCapacity();
         if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException();
         }
-        return data[i];
+        return data.charAt(i);
     }
 
-    /**
-     * Ensures that the buffer has enough capacity to hold new characters.
-     * If the buffer is full, its size is doubled.
-     */
-    private void ensureCapacity() {
-        if (size == data.length) {
-            data = Arrays.copyOf(data, data.length * 2);
-        }
-    }
+   
 
     /**
      * Returns the contents of the buffer as a String.
@@ -139,14 +113,6 @@ public class SimpleStringBuffer {
      * @return the text stored in the buffer
      */
     public String toString() {
-        ensureCapacity();
-        int i = 0;
-        String output = "";
-
-        while (i < size) {
-            output = output + data[i];
-            i++;
-        }
-        return output;
+        return data;
     }
 }
