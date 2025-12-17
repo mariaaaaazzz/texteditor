@@ -94,7 +94,7 @@ public class GapBuffer {
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public char getChar(int i) {
-        if (i < 0 || i > getSize()) {
+        if (i < 0 || i >= getSize()) {
             throw new IndexOutOfBoundsException();
         }
         if (i < cursor) {
