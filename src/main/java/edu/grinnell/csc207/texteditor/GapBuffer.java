@@ -1,8 +1,6 @@
 
 package edu.grinnell.csc207.texteditor;
 
-import java.util.Arrays;
-
 /**
  * A gap buffer-based implementation of a text buffer.
  */
@@ -43,6 +41,7 @@ public class GapBuffer {
             return;
         }
         cursor--;
+        data[cursor] = '\0';
     }
 
     /**
@@ -58,22 +57,32 @@ public class GapBuffer {
      * Moves the cursor one position to the left.
      */
     public void moveLeft() {
-        if (cursor > 0) {
-            data[cursor - 1] = data[gapEnd - 1];
-            cursor--;
-            gapEnd--;
+        if (cursor == 0) {
+            return;
         }
+        
+        data[gapEnd - 1] = data[cursor - 1];
+      
+        data[cursor - 1] = '\0';
+
+        cursor--;
+        gapEnd--;
     }
 
     /**
      * Moves the cursor one position to the right.
      */
     public void moveRight() {
-        if (gapEnd < data.length) {
-            data[cursor] = data[gapEnd];
-            cursor++;
-            gapEnd++;
+        if (gapEnd == data.length) {
+            return;
         }
+      
+        data[cursor] = data[gapEnd];
+       
+        data[gapEnd] = '\0';
+
+        cursor++;
+        gapEnd++;
     }
 
     /**
@@ -133,22 +142,19 @@ public class GapBuffer {
      */
     private void ensureGap(int gapNeed) {
         int gapSize = gapEnd - cursor;
-        
         if (gapSize >= gapNeed) {
             return;
         }
 
-        int oldLength = data.length;
+        int newLen = Math.max(data.length * 2, data.length + gapNeed);
+        char[] newData = new char[newLen];
 
-        char[] newData = Arrays.copyOf(data, oldLength * 2);
+     
+        System.arraycopy(data, 0, newData, 0, cursor);
 
-        // Move right block to the end of the new array
-        int rightSize = oldLength - gapEnd;
-        int newGapEnd = oldLength * 2 - rightSize;
-
-        for (int i = 0; i < rightSize; i++) {
-            newData[newGapEnd + i] = data[gapEnd + i];
-        }
+        int rightSize = data.length - gapEnd;
+        int newGapEnd = newLen - rightSize;
+        System.arraycopy(data, gapEnd, newData, newGapEnd, rightSize);
 
         data = newData;
         gapEnd = newGapEnd;
