@@ -13,9 +13,6 @@ public class SimpleStringBuffer {
 
     /**
      * Creates a new text buffer with the given initial capacity.
-     *
-     * @param cursor the initial cursor position (usually 0)
-     * @param size the initial capacity of the buffer
      */
     public SimpleStringBuffer() {
         data = "";
